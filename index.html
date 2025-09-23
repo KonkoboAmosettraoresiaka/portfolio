@@ -1,503 +1,274 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jonathan Martin - Informaticien</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio — Jonatant aaa</title>
     <style>
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --accent: #06b6d4;
+            --muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.04)
+        }
+
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
+            margin: 0;
+            font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, #071026 0%, #0b1220 100%);
+            color: #e6eef6;
+            -webkit-font-smoothing: antialiased
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 36px auto;
+            padding: 28px
+        }
+
+        header {
             display: flex;
-            justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            gap: 18px
+        }
+
+        .avatar {
+            width: 88px;
+            height: 88px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent), #3b82f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #042027;
+            font-size: 28px
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 26px
+        }
+
+        p.lead {
+            margin: 6px 0 0;
+            color: var(--muted)
+        }
+
+        .card {
+            background: var(--card);
             padding: 20px;
+            border-radius: 12px;
+            margin-top: 18px;
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.03)
         }
 
-        .cv-container {
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 18px
+        }
+
+        .skills {
             display: flex;
-            width: 100%;
-            max-width: 800px;
-            background: white;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            min-height: 1100px;
+            flex-wrap: wrap;
+            gap: 8px
         }
 
-        /* Left Column - Dark Blue */
-        .left-column {
-            width: 35%;
-            background: linear-gradient(180deg, #4a5568 0%, #2d3748 100%);
-            color: white;
-            padding: 80px 30px 40px; /* Ajustement du padding-top pour déplacer le contenu vers le bas */
-            position: relative;
-            overflow: hidden;
+        .skill {
+            background: var(--glass);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--muted)
         }
 
-        .left-column::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.02) 50%, transparent 60%),
-                linear-gradient(-45deg, transparent 40%, rgba(255,255,255,0.02) 50%, transparent 60%);
-            background-size: 40px 40px;
-            pointer-events: none;
+        .project {
+            border-radius: 10px;
+            padding: 14px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            margin-bottom: 12px
         }
 
-        .profile-section {
-            text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
+        .project h4 {
+            margin: 0 0 6px
         }
 
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            border: 4px solid rgba(255, 255, 255, 0.2);
-            position: relative;
+        footer {
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 13px
         }
 
-        .profile-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 150"><rect width="150" height="150" fill="%23e2e8f0"/><circle cx="75" cy="60" r="25" fill="%23a0aec0"/><path d="M75 85 Q60 85 60 95 Q60 110 75 110 Q90 110 90 95 Q90 85 75 85" fill="%23a0aec0"/></svg>');
-            background-size: cover;
+        a.btn {
+            display: inline-block;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--accent), #3b82f6);
+            color: #042027;
+            text-decoration: none;
+            font-weight: 600
         }
 
-        .contact-section {
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
+        .meta {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 8px
         }
 
-        .contact-section h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .contact-info {
-            margin-bottom: 15px;
-        }
-
-        .contact-label {
-            font-size: 14px;
-            opacity: 0.8;
-            margin-bottom: 5px;
-        }
-
-        .contact-value {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .skills-section {
-            position: relative;
-            z-index: 1;
-        }
-
-        .skills-section h2 {
-            font-size: 24px;
-            margin-bottom: 30px;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .skill-item {
-            margin-bottom: 25px;
-        }
-
-        .skill-name {
-            font-size: 14px;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .stars {
-            display: flex;
-            gap: 3px;
-        }
-
-        .star {
-            width: 16px;
-            height: 16px;
-            color: #ffd700;
-            font-size: 16px;
-        }
-
-        .star.empty {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        /* Right Column - Light */
-        .right-column {
-            width: 65%;
-            padding: 50px 40px;
-            background: #fafafa;
-            position: relative;
-        }
-
-        .header-section {
-            margin-bottom: 40px;
-        }
-
-        .name {
-            font-size: 48px;
-            font-weight: 300;
-            color: #2d3748;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
-        }
-
-        .title {
-            font-size: 18px;
-            color: #718096;
-            font-weight: 400;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .section {
-            margin-bottom: 45px;
-        }
-
-        .section-title {
-            font-size: 28px;
-            color: #718096;
-            font-weight: 300;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 50px;
-            height: 1px;
-            background-color: #718096;
-        }
-
-        .education-item, .experience-item {
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 8px;
-        }
-
-        .item-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #2d3748;
-            line-height: 1.2;
-        }
-
-        .item-date {
-            font-size: 14px;
-            color: #718096;
-            font-weight: 500;
-            white-space: nowrap;
-            margin-left: 20px;
-        }
-
-        .item-subtitle {
-            font-size: 14px;
-            color: #718096;
-            margin-bottom: 10px;
-        }
-
-        .item-description {
-            margin-top: 8px;
-        }
-
-        .item-description ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .item-description li {
-            font-size: 14px;
-            color: #4a5568;
-            line-height: 1.6;
-            margin-bottom: 6px;
-            padding-left: 15px;
-            position: relative;
-        }
-
-        .item-description li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #718096;
-            font-weight: bold;
-        }
-
-        .languages-section {
-            margin-top: 30px;
-        }
-
-        .language-item {
-            font-size: 14px;
-            color: #4a5568;
-            line-height: 1.8;
-            padding-left: 15px;
-            position: relative;
-        }
-
-        .language-item::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #718096;
-            font-weight: bold;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .cv-container {
-                flex-direction: column;
-                max-width: 100%;
+        @media (max-width:900px) {
+            .grid {
+                grid-template-columns: 1fr
             }
-            
-            .left-column, .right-column {
-                width: 100%;
-            }
-            
-            .left-column {
-                padding: 30px 20px;
-            }
-            
-            .right-column {
-                padding: 30px 20px;
-            }
-            
-            .name {
-                font-size: 36px;
-            }
-            
-            .item-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .item-date {
-                margin-left: 0;
-                margin-top: 5px;
-            }
-        }
 
-        @media print {
-            body {
-                padding: 0;
-                background: white;
-            }
-            
-            .cv-container {
-                box-shadow: none;
-                max-width: 100%;
-                min-height: auto;
+            .container {
+                padding: 18px
             }
         }
     </style>
 </head>
+
 <body>
-    <div class="cv-container">
-        <!-- Left Column -->
-        <div class="left-column">
-            <div class="profile-section">
-                <div class="profile-image"></div>
-            </div>
-
-            <div class="contact-section">
-                <h2>Contact</h2>
-                
-                <div class="contact-info">
-                    <div class="contact-label">Téléphone :</div>
-                    <div class="contact-value">+123-456-7890</div>
-                </div>
-
-                <div class="contact-info">
-                    <div class="contact-label">Mail :</div>
-                    <div class="contact-value">hello@reallygreatsite.com</div>
-                </div>
-
-                <div class="contact-info">
-                    <div class="contact-label">Adresse :</div>
-                    <div class="contact-value">123 Anywhere St., Any City</div>
-                </div>
-
-                <div class="contact-info">
-                    <div class="contact-label">WhatsApp :</div>
-                    <div class="contact-value">+123-456-7890</div>
+    <div class="container">
+        <header>
+            <div class="avatar">JA</div>
+            <div>
+                <h1> Jonatant aaa — Ingénieur en conception des systèmes d'information</h1>
+                <p class="lead">Django • Laravel • Flutter • Supabase • Android Studio • Excel/VBA • Automatisation</p>
+                <div class="meta">Email: <strong>konkoboamos02@gmail.com</strong> • Tel: <strong>+226 54 39 56
+                        03</strong>
                 </div>
             </div>
+        </header>
 
-            <div class="skills-section">
-                <h2>Compétences</h2>
-                
-                <div class="skill-item">
-                    <div class="skill-name">Langages de programmation</div>
-                    <div class="stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star empty">★</span>
-                    </div>
+        <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                <div style="max-width:62%">
+                    <h3>Profil</h3>
+                    <p>Ingénieur en conception des systèmes d’information, spécialisé dans le développement de solutions
+                        sur mesure allant des applications mobiles aux plateformes web. Je maîtrise les outils
+                        nécessaires (VBA, Django, Laravel, Flutter, Supabase, Android Studio) pour concevoir des
+                        applications robustes, adaptées aux besoins spécifiques et évolutives. Je propose également
+                        l’automatisation des tâches et workflows (IA, n8n, Make, Zapier, etc.) afin d’optimiser les
+                        processus métiers.</p>
                 </div>
-
-                <div class="skill-item">
-                    <div class="skill-name">Développement web</div>
-                    <div class="stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-name">Bases de données</div>
-                    <div class="stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star empty">★</span>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-name">Architecture de logiciels</div>
-                    <div class="stars">
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                        <span class="star">★</span>
-                    </div>
+                <div style="text-align:right">
+                    <div style="font-size:12px;color:var(--muted)">Localisation</div>
+                    <div style="font-weight:700">Ouagadougou, Burkina Faso</div>
                 </div>
             </div>
         </div>
 
-        <!-- Right Column -->
-        <div class="right-column">
-            <div class="header-section">
-                <h1 class="name">Jonathan Martin</h1>
-                <p class="title">INFORMATICIEN</p>
+        <div class="grid">
+            <div>
+                <div class="card">
+                    <h3>Compétences techniques</h3>
+                    <div class="skills" style="margin-top:10px">
+                        <div class="skill">Flutter (applications mobiles)</div>
+                        <div class="skill">Laravel (backend, dashboards)</div>
+                        <div class="skill">Django (applications web)</div>
+                        <div class="skill">Supabase / MySQL</div>
+                        <div class="skill">Android Studio</div>
+                        <div class="skill">Excel avancé</div>
+                        <div class="skill">VBA (UserForms, macros)</div>
+                        <div class="skill">Automatisation & reporting</div>
+                        <div class="skill">Workflows automatisés (IA, n8n, Make…)</div>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top:14px">
+                    <h3>Projets et réalisations</h3>
+
+                    <div class="project">
+                        <h4>Faso Ticket — Application Flutter</h4>
+                        <div class="meta">Stack : Flutter + Supabase</div>
+                        <p>Application mobile permettant la réservation et la gestion de tickets de transport.
+                            Fonctionnalités : authentification, réservation de tickets, gestion des données, tableau de
+                            bord interactif.</p>
+                    </div>
+
+                    <div class="project">
+                        <h4>Plateforme e-commerce pour la vente de volailles</h4>
+                        <div class="meta">Stack : Laravel + MySQL</div>
+                        <p>Développement d’une plateforme e-commerce spécialisée dans la vente de volailles et produits
+                            dérivés. Fonctionnalités : création et gestion de boutiques, ajout de produits (œufs,
+                            poules, poussins, viandes), recherche avancée, mise en avant des 100 produits les moins
+                            chers, commande et paiement en ligne sécurisé.</p>
+                    </div>
+
+                    <div class="project">
+                        <h4>Wi-Shop — Application e-commerce</h4>
+                        <div class="meta">Stack : HTML/CSS/JAVA SCRIPT + MySQL</div>
+                        <p>Application mobile de vente d’équipements informatiques avec gestion du panier et une partie
+                            administration pour ajouter/supprimer des produits.</p>
+                    </div>
+
+                    <div class="project">
+                        <h4>E-Service — Plateforme de services à domicile (en cours)</h4>
+                        <div class="meta">Laravel + Mysql</div>
+                        <p>Plateforme permettant de réserver des services à domicile. Fonctionnalités prévues :
+                            réservation, gestion des prestataires, suivi des demandes.</p>
+                    </div>
+
+                    <div class="Bloc note">
+                        <h4>Bloc note personnel</h4>
+                        <div class="meta">Android Studio + Sqlite</div>
+                        <p>Une application de bloc note personnel avec modifications, suppression et gestion des notes.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="card" style="margin-top:14px">
+                    <h3>Services proposés</h3>
+                    <ul style="margin:8px 0 0 18px;color:var(--muted)">
+                        <li>Développement web (Django, Laravel)</li>
+                        <li>Applications mobiles multiplateformes (Flutter, Android Studio)</li>
+                        <li>Développement d’applications Excel (VBA) sur mesure</li>
+                        <li>Automatisation des calculs et génération de rapports</li>
+                        <li>Mise en place de workflows automatisés (IA, n8n, Make, Zapier, etc.)</li>
+                        <li>Intégration d’API et systèmes d’import/export</li>
+                        <li>Mise en place de sauvegardes et procédures de récupération</li>
+                        <li>Maintenance, formation et support technique</li>
+                    </ul>
+                </div>
+
             </div>
 
-            <div class="section">
-                <h2 class="section-title">Formations</h2>
-                
-                <div class="education-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Master en ingénierie informatique</div>
-                            <div class="item-subtitle">Nom de l'Université, Any City</div>
-                        </div>
-                        <div class="item-date">2013-2015</div>
+            <aside>
+                <div class="card">
+                    <h3>Contact & Disponibilité</h3>
+                    <p style="margin-top:6px">Disponible pour des missions courtes et moyennes.
+                        Délai estimé pour la version 1 : 1 à 3 semaines selon le périmètre.</p>
+
+                    <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px">
+                        <a class="btn" href="https://wa.me/2260000000" target="_blank">📱 WhatsApp</a>
+                        <a class="btn" href="mailto:awcmeffn@gmail.com">✉️ Gmail</a>
                     </div>
                 </div>
 
-                <div class="education-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Certificat en développement d'applications mobiles</div>
-                            <div class="item-subtitle">Nom de l'Université, Any City</div>
-                        </div>
-                        <div class="item-date">2010-2013</div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="section">
-                <h2 class="section-title">Expériences professionnelles</h2>
-                
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Développeur Logiciel</div>
-                            <div class="item-subtitle">Concordia, Any City</div>
-                        </div>
-                        <div class="item-date">2020-2023</div>
-                    </div>
-                    <div class="item-description">
-                        <ul>
-                            <li>Développement et maintenance d'applications</li>
-                            <li>Collaboration active au sein d'équipes multidisciplinaires</li>
-                            <li>Optimisation des performances du site</li>
-                        </ul>
-                    </div>
+                <div class="card" style="margin-top:12px">
+                    <h3>Langues</h3>
+                    <div class="meta">Français (courant) </div>
+                    <div class="meta">Anglais </div>
                 </div>
 
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Développeur Web</div>
-                            <div class="item-subtitle">Audio Stream, Any City</div>
-                        </div>
-                        <div class="item-date">2018-2020</div>
-                    </div>
-                    <div class="item-description">
-                        <ul>
-                            <li>Conception et implémentation de solutions logicielles</li>
-                            <li>Participation à la planification et à la coordination des projets de développement</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="experience-item">
-                    <div class="item-header">
-                        <div>
-                            <div class="item-title">Développeur Logiciel</div>
-                            <div class="item-subtitle">Fauget, Any City</div>
-                        </div>
-                        <div class="item-date">2015-2018</div>
-                    </div>
-                    <div class="item-description">
-                        <ul>
-                            <li>Supervision et structuration de bases de données clients pour assurer une gestion efficace de l'information</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2 class="section-title">Langues</h2>
-                <div class="languages-section">
-                    <div class="language-item">Français : langue maternelle</div>
-                    <div class="language-item">Anglais : niveau courant</div>
-                    <div class="language-item">Espagnol : niveau intermédiaire</div>
-                </div>
-            </div>
+            </aside>
         </div>
+
+        <footer>
+            © <strong> Jonatant aaa</strong> — Ingénieur en systèmes d’information.
+        </footer>
     </div>
 </body>
+
 </html>
